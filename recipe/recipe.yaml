@@ -11,7 +11,7 @@ source:
   target_directory: src
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - package:
@@ -28,6 +28,8 @@ outputs:
         - ${{ compiler("go-nocgo") }}
         - go-licenses
         - nodejs >=20
+      run:
+        - nebi-desktop ==${{ version }}
     tests:
       - script:
           - nebi version
