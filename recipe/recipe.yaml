@@ -38,6 +38,8 @@ outputs:
         - ${{ compiler("go-nocgo") }}
         - go-licenses
         - nodejs >=20
+      run:
+        - nebi-desktop ==${{ version }}
     tests:
       - script:
           - nebi version
