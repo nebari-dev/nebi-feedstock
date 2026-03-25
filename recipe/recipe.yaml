@@ -13,16 +13,6 @@ source:
 build:
   number: 1
 
-about:
-  homepage: https://github.com/nebari-dev/nebi
-  summary: Local-first workspace management for Pixi
-  license: Apache-2.0
-  license_file:
-    - src/LICENSE
-    - library_licenses/
-  documentation: https://github.com/nebari-dev/nebi
-  repository: https://github.com/nebari-dev/nebi
-
 outputs:
   - package:
       name: nebi
@@ -112,6 +102,16 @@ outputs:
         Nebi Desktop is a native desktop application for managing Pixi workspaces.
         It provides a graphical interface for tracking, pushing, and pulling
         workspace configurations with built-in web UI.
+
+about:
+  homepage: https://github.com/nebari-dev/nebi
+  summary: Local-first workspace management for Pixi
+  license: Apache-2.0
+  license_file:
+    - src/LICENSE
+    - library_licenses/
+  documentation: https://github.com/nebari-dev/nebi
+  repository: https://github.com/nebari-dev/nebi
 
 extra:
   recipe-maintainers:

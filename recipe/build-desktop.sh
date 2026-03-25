@@ -9,13 +9,17 @@ cd frontend && npm install && npm run build && cd ..
 # Copy frontend dist to web embed directory
 rm -rf internal/web/dist && cp -r frontend/dist internal/web/dist
 
-# Install wails CLI
-go install github.com/wailsapp/wails/v2/cmd/wails@latest
+# Install wails CLI for the *host* architecture (build tool, not target binary).
+# Override GOBIN, GOOS, and GOARCH so Go doesn't see this as cross-compilation
+# and avoids "cannot install cross-compiled binaries when GOBIN is set".
+GOBIN="${BUILD_PREFIX}/bin" GOOS="$(go env GOHOSTOS)" GOARCH="$(go env GOHOSTARCH)" \
+    go install github.com/wailsapp/wails/v2/cmd/wails@latest
 
 # Collect Go dependency licenses
 go-licenses save . --save_path ../library_licenses
 
 # Build desktop app
+mkdir -p "${PREFIX}/bin"
 if [[ "${target_platform}" == "linux-"* ]]; then
     wails build -tags webkit2_41 -ldflags "-s -w -X main.Version=${PKG_VERSION}"
     cp build/bin/Nebi "${PREFIX}/bin/nebi-desktop"
